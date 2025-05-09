@@ -1,12 +1,26 @@
-
 from datetime import datetime
-from user_config import USER_CONFIG
-import pytz
+from core.update_user import UpdateUser
 
-def obter_sessao_ativa():
-    fuso = pytz.timezone("America/Sao_Paulo")
-    agora = datetime.now(fuso).strftime("%H:%M")
-    for sessao in USER_CONFIG.get("sessoes", []):
-        if sessao["inicio"] <= agora <= sessao["fim"]:
-            return sessao
-    return None
+class SessionManager:
+    def __init__(self):
+        self.update_user = UpdateUser()
+
+    def sessao_ativa(self):
+        """
+        Verifica se a IA deve estar ativa com base nas configurações de horário.
+        """
+        if not self.update_user.usar_sessoes():
+            return True  # Sessões desativadas → sempre ativo
+
+        agora = datetime.now().strftime("%H:%M")
+        for sessao in self.update_user.obter_sessoes():
+            if sessao["inicio"] <= agora <= sessao["fim"]:
+                return True
+        return False
+
+    def obter_proximo_par(self):
+        """
+        Define o próximo par e timeframe para análise.
+        Por enquanto retorna fixo para fins de teste.
+        """
+        return "EURUSD-OTC", "M1"
