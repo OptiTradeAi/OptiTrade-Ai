@@ -1,0 +1,1 @@
+Projeto inicial OptiTrade AI
