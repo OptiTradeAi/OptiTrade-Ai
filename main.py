@@ -1,17 +1,10 @@
-
+import time
 from core.engine import OptiEngine
 
 if __name__ == "__main__":
-    print("========================================")
-    print("      OptiTrade AI - Versão Local")
-    print(" Monitoramento Real de Pares OTC M1/M5")
-    print("========================================\n")
+    print("OptiEngine inicializado")
+    OptiEngine().iniciar_monitoramento()
 
-    engine = OptiEngine()
-
-    try:
-        engine.iniciar_monitoramento()
-    except KeyboardInterrupt:
-        print("\nEncerrado pelo usuário.")
-    except Exception as e:
-        print(f"Erro durante execução: {e}")
+    # Mantém o serviço vivo no Render
+    while True:
+        time.sleep(3600)
