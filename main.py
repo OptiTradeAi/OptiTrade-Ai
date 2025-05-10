@@ -1,3 +1,5 @@
+from core.engine import OptiEngine
+
 if __name__ == "__main__":
     print("========================================")
     print("      OptiTrade AI - Versão Local")
