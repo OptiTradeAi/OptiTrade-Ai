@@ -1,29 +1,53 @@
 # user_config.py
 
-# ====== CONFIGURAÇÕES GERAIS DO USUÁRIO ======
+telegram_token = "7605762525:AAFHQWncC5Nf4cdGkvlBkwwvyShKwZxByLY"
+telegram_chat_id = "-1002695222621"
 
-# Telegram
-telegram_token = "SEU_TOKEN_AQUI"
-telegram_chat_id = "SEU_CHAT_ID_AQUI"
-
-# Timezone (sempre use 'America/Sao_Paulo' para horário de Brasília)
 fuso_horario = "America/Sao_Paulo"
 
-# Controle por sessões (ativado ou não)
-sessoes_ativas = False  # Envio de sinais livre, sem controle por horário
+# Controle de envio por sessões
+sessoes_ativas = True
 
-# Sessões configuradas (só funcionarão se sessoes_ativas = True)
-horarios_sessoes = [
-    {"inicio": "09:00", "fim": "12:00", "limite_sinais": 10},
-    {"inicio": "14:00", "fim": "17:00", "limite_sinais": 8}
+sessoes = [
+    {
+        "nome": "Sessão Manhã",
+        "inicio": "09:00",
+        "fim": "12:00",
+        "limite_sinais": 10
+    },
+    {
+        "nome": "Sessão Tarde",
+        "inicio": "14:00",
+        "fim": "17:00",
+        "limite_sinais": 8
+    },
+    {
+        "nome": "Sessão Noite",
+        "inicio": "19:00",
+        "fim": "21:00",
+        "limite_sinais": 5
+    }
 ]
 
-# Configurações de entrada
-usar_gale = True
-delay_antes_entrada = 0  # Segundos de espera antes da entrada
-tempo_expiracao = 5  # Minutos da operação
+# Timeframes
+timeframe_m1_ativo = True
+timeframe_m5_ativo = True
+tempo_expiracao_m1 = 1
+tempo_expiracao_m5 = 5
 
-# Estratégias ativas
+# Estratégias e IA
+usar_telegram = True
+gale_ativo = True
+modo_teste = False
+usar_m1 = True
+usar_m5 = True
+
+# Filtros e controles
+stop_win = 3
+stop_loss = 3
+minimo_confluencias_super_entrada = 3
+minimo_acertividade_aceita = 80
+
 estrategias_ativas = {
     "3_velas": True,
     "pavio_exaustao": True,
@@ -32,37 +56,23 @@ estrategias_ativas = {
     "aprendizado_novo_padrao": True
 }
 
-# Timeframes analisados
-usar_m1 = True
-usar_m5 = True
-
-# Modo de operação
-modo_teste = False  # True = simulação (não envia para o Telegram)
-
-# Filtros
-minimo_confluencias_super_entrada = 3
-minimo_acertividade_aceita = 80
-
-# Controle de limite de operações
-limite_wins_consecutivos = 3
-limite_losses_consecutivos = 3
-
-# ====== DICIONÁRIO DE CONFIGURAÇÃO ======
+# Pacote final para importar em toda a IA
 USER_CONFIG = {
     "telegram_token": telegram_token,
     "telegram_chat_id": telegram_chat_id,
     "fuso_horario": fuso_horario,
     "sessoes_ativas": sessoes_ativas,
-    "horarios_sessoes": horarios_sessoes,
-    "usar_gale": usar_gale,
-    "delay_antes_entrada": delay_antes_entrada,
-    "tempo_expiracao": tempo_expiracao,
-    "estrategias_ativas": estrategias_ativas,
+    "sessoes": sessoes,
+    "usar_telegram": usar_telegram,
     "usar_m1": usar_m1,
     "usar_m5": usar_m5,
+    "tempo_expiracao_m1": tempo_expiracao_m1,
+    "tempo_expiracao_m5": tempo_expiracao_m5,
+    "gale_ativo": gale_ativo,
     "modo_teste": modo_teste,
+    "estrategias_ativas": estrategias_ativas,
+    "stop_win": stop_win,
+    "stop_loss": stop_loss,
     "minimo_confluencias_super_entrada": minimo_confluencias_super_entrada,
-    "minimo_acertividade_aceita": minimo_acertividade_aceita,
-    "limite_wins_consecutivos": limite_wins_consecutivos,
-    "limite_losses_consecutivos": limite_losses_consecutivos
+    "minimo_acertividade_aceita": minimo_acertividade_aceita
 }
