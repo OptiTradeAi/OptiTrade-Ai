@@ -5,7 +5,7 @@ telegram_chat_id = "-1002695222621"
 
 fuso_horario = "America/Sao_Paulo"
 
-# Controle de envio por sessões
+# Controle por sessões
 sessoes_ativas = True
 
 sessoes = [
@@ -29,24 +29,24 @@ sessoes = [
     }
 ]
 
-# Timeframes
+# Timeframes e tempo de expiração
 timeframe_m1_ativo = True
 timeframe_m5_ativo = True
 tempo_expiracao_m1 = 1
 tempo_expiracao_m5 = 5
 
-# Estratégias e IA
+# Estratégias e opções gerais
 usar_telegram = True
 gale_ativo = True
 modo_teste = False
 usar_m1 = True
 usar_m5 = True
 
-# Filtros e controles
+# Filtros para aprendizado adaptativo (sem bloqueio por estatística)
 stop_win = 3
 stop_loss = 3
-minimo_confluencias_super_entrada = 3
-minimo_acertividade_aceita = 80
+minimo_confluencias_super_entrada = 2
+minimo_acertividade_aceita = 0  # IA envia e aprende com os resultados
 
 estrategias_ativas = {
     "3_velas": True,
@@ -56,7 +56,7 @@ estrategias_ativas = {
     "aprendizado_novo_padrao": True
 }
 
-# Pacote final para importar em toda a IA
+# Dicionário final usado pela IA
 USER_CONFIG = {
     "telegram_token": telegram_token,
     "telegram_chat_id": telegram_chat_id,
