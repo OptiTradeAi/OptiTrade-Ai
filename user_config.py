@@ -2,61 +2,46 @@
 
 telegram_token = "7605762525:AAFHQWncC5Nf4cdGkvlBkwwvyShKwZxByLY"
 telegram_chat_id = "-1002695222621"
-
 fuso_horario = "America/Sao_Paulo"
 
-# Controle por sessões
-sessoes_ativas = True
+# Sessões desativadas (IA roda o tempo todo)
+sessoes_ativas = False
+sessoes = []
 
-sessoes = [
-    {
-        "nome": "Sessão Manhã",
-        "inicio": "09:00",
-        "fim": "12:00",
-        "limite_sinais": 10
-    },
-    {
-        "nome": "Sessão Tarde",
-        "inicio": "14:00",
-        "fim": "17:00",
-        "limite_sinais": 8
-    },
-    {
-        "nome": "Sessão Noite",
-        "inicio": "19:00",
-        "fim": "21:00",
-        "limite_sinais": 5
-    }
-]
-
-# Timeframes e tempo de expiração
-timeframe_m1_ativo = True
-timeframe_m5_ativo = True
+# Timeframe configurado para M5 apenas
+usar_m1 = False
+usar_m5 = True
 tempo_expiracao_m1 = 1
 tempo_expiracao_m5 = 5
 
-# Estratégias e opções gerais
+# Estratégias de mercado ativas
+estrategias_ativas = {
+    "bollinger_band": True,            # Cruzamento da banda + reversão com referência
+    "engolfo": True,                   # Engolfo de alta/baixa
+    "martelo_estrela": True,          # Martelo / Estrela cadente
+    "inside_bar": True,               # Inside Bar (explosão)
+    "tres_velas_simples": True,       # Três velas com rompimento ou fraqueza
+    "candle_forca_zona": True,        # Vela cheia forte em zona
+    # Estratégias desativadas
+    "3_velas": False,
+    "pavio_exaustao": False,
+    "rompimento_pavio_regiao": False,
+    "super_entrada": False,
+    "aprendizado_novo_padrao": False
+}
+
+# Envio e comportamento
 usar_telegram = True
 gale_ativo = True
 modo_teste = False
-usar_m1 = True
-usar_m5 = True
 
-# Filtros para aprendizado adaptativo (sem bloqueio por estatística)
+# Filtros desligados para aprendizado livre
 stop_win = 3
 stop_loss = 3
-minimo_confluencias_super_entrada = 2
-minimo_acertividade_aceita = 0  # IA envia e aprende com os resultados
+minimo_confluencias_super_entrada = 0
+minimo_acertividade_aceita = 0
 
-estrategias_ativas = {
-    "3_velas": True,
-    "pavio_exaustao": True,
-    "rompimento_pavio_regiao": True,
-    "super_entrada": True,
-    "aprendizado_novo_padrao": True
-}
-
-# Dicionário final usado pela IA
+# Pacote de configuração final usado pela IA
 USER_CONFIG = {
     "telegram_token": telegram_token,
     "telegram_chat_id": telegram_chat_id,
