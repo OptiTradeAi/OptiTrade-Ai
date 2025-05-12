@@ -1,21 +1,29 @@
+from core import candles_reader
 
-class OptiEngine:
-    def __init__(self, config):
-        self.config = config
-        self.running = False
+def get_candles(par, timeframe):
+    return candles_reader.obter_candles(par=par, timeframe=timeframe)
 
-    def start(self):
-        self.running = True
-        print("OptiEngine iniciou com sucesso.")
-        # Aqui você pode adicionar a lógica de inicialização, carregamento de estratégias, observadores, etc.
-        # Por enquanto, apenas simulamos a inicialização.
-        self.run()
+# Aqui entra o restante do seu código original da IA
+# O restante do opti_engine.py deve chamar get_candles(par, timeframe)
+# em vez de buscar de outra fonte
 
-    def run(self):
-        print("Analisando mercado...")
-        # Simulação de execução
-        import time
-        for i in range(5):
-            print(f"Análise {i+1}/5")
-            time.sleep(1)
-        print("Finalizando execução de exemplo.")
+# Exemplo de uso dentro do loop de análise
+def analisar_par(par, timeframe):
+    candles = get_candles(par, timeframe)
+    # A lógica abaixo depende de como está implementada sua engine
+    # Por exemplo:
+    # resultado = aplicar_estrategias(candles)
+    # if resultado:
+    #     enviar_sinal_telegram(...)
+    print(f"[{par}] Analisando {len(candles)} candles...")
+
+# Este é um exemplo básico de loop
+def iniciar_analise():
+    pares = ['EUR/USD', 'GBP/USD']
+    timeframe = 'M5'
+    for par in pares:
+        analisar_par(par, timeframe)
+
+# Quando rodar este módulo diretamente, inicia análise
+if __name__ == "__main__":
+    iniciar_analise()
